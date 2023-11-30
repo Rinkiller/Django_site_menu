@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+    
+    <center>  
+    <form method="post">
+        {% csrf_token %}
+        <div class="container border border-primary" style="width: 500px; background-color: rgb(168, 226, 157); margin-top: 30px; margin-bottom: 30px; padding-top: 20px;padding-bottom: 20px;"> 
+            <table>
+                {% for f in form %}
+                    <tr><td>{{f.label}}: </td><td>{{ f }}</td></tr>
+                    <tr><td>{{ f.errors }}</td><td>
+                {% endfor %}
+                </table>
+             
+            </div>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    </center>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Сайт кулинарных рецептов{% endblock %}
+{% block content %}
+    <center>
+        <h2 style="color: red;">{{message}}</h2>
+        {%for recipte in reciptes%}
+            <div class="card" style="width: 40%; background-color: rgb(196, 255, 223);">
+                <a href="editRecipes/{{recipte.id}}/"><img src="{{recipte.image.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                <h3 class="card-text" style="color: rgb(124, 12, 228);">{{recipte.name}}</h3>
+                <p class="card-text">{{recipte.description}}</p>
+                <p class="card-text">Автор рецепта: {{recipte.author}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </center>
+{% endblock %}

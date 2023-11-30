@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>{% block title %}Сайт{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="">
+  </head>
+<body style="background-color: azure;">
+  {% load static %}
+    <footer class="blockquote-footer">
+      <div class="d-flex justify-content-around" style="background-color: teal; padding-top: 20px; padding-bottom: 20px;">
+        <div class="d-flex justify-content-start" style="margin-left: 5%; gap: 20px;">
+          <img style="height: 60px;" src="{% static 'pngwing.com.png' %}" alt="logo">
+          <a href="{% url 'home' %}" class="link-offset-2 link-underline link-underline-opacity-0"><h2 style="color: rgb(255, 153, 0); padding-top: 10px;">Сайт кулинарных рецептов</h2></a>
+        </div>
+        <form class="d-flex" role="search" action="{% url 'search' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск" name="search">
+          <button class="btn btn-outline-light" type="submit">Поиск</button>
+        </form>
+
+        <div  class="d-flex justify-content-end" style="margin-right: 5%; gap: 20px; padding-top: 10px;"> 
+          {% if user.is_authenticated %}
+          <a href="{% url 'createRecipes' %}" style="font-size: 20px;"><button type="button" class="btn btn-success">Добавить рецепт</button></a>
+          <a href="{% url 'findRecipe' %}" style="font-size: 20px;"><button type="button" class="btn btn-info">Редактировать рецепт</button></a>
+          <a href="{% url 'logout' %}" style="font-size: 20px;"><button type="button" class="btn btn-danger">Выйти  ({{user.username}})</button></a>
+          {% else %}
+          <a href="{% url 'register' %}">   <button type="button" class="btn btn-primary">Регистрация на сайте</button>  </a>
+          <a href="{% url 'login' %}">   <button type="button" class="btn btn-success">Авторизация</button> </a>
+          {% endif %} 
+        </div>
+      </div>
+    </footer>   
+      
+    {% block content %}
+        <p>Скоро тут появится текст... Возможно...Появится....</p>
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
